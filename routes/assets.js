@@ -2,17 +2,21 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
-router.use(bodyParser.urlencoded({extended: true}));
+//asset model
+var Assets = require('../models/assets.js');
 
-var assets = [
-    {name: "Mobile Phone", asset_id: 1232142, status: "In Use", user: "User1"},
-    {name: "iPad", asset_id: 253345, status: "Storage", user: "Not assigned"},
-    {name: "Android Tablet", asset_id: 36465657, status: "In Use", user: "User4"}
-];
+router.use(bodyParser.urlencoded({extended: true}));
 
 //main asset route
 router.get('/assets', function(req, res){
-    res.render('assets/assets', {assets: assets});
+    //get all assets from database
+    Assets.find({}, function(err, allAssets){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('assets/assets', {assets: allAssets});
+        }
+    });
 });
 
 //create new asset form route
@@ -28,9 +32,17 @@ router.post('/assets', function(req, res){
     var status = req.body.status;
     var user = req.body.user;
     var newAsset = {name: name, asset_id: asset_id, status: status, user: user};
-    assets.push(newAsset);
-    //redirect back to assets page
-    res.redirect('./assets');
+    
+    //Create new asset
+    Assets.create(newAsset, function(err, asset){
+        if (err) {
+            console.log(err);
+        } else {
+            //redirect back to assets page
+            res.redirect('./assets');
+        }
+    });
+   
 });
 
 module.exports = router;
