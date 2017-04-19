@@ -1,7 +1,10 @@
 var express     = require('express'),
     mongoose    = require('mongoose'),
     app         = express();
+    mongoose    = require('mongoose');
 
+//database connection
+mongoose.connect('mongodb://localhost/asset_management');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));

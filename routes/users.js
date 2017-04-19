@@ -1,18 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+//user models
+var User = require('../models/user.js');
 
 router.use(bodyParser.urlencoded({extended: true}));
 
-var users = [
-    {name: "User1", title: "Manager", branch: "Melbourne"},
-    {name: "User2", title: "Developer", branch: "USA"},
-    {name: "User3", title: "Designer", branch: "India"}
-];
-
 //users main route
 router.get('/users', function(req, res){
-    res.render('./users/users', {users: users});
+    //get all users from the database
+    User.find({}, function(err, allUsers){
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('./users/users', {users: allUsers});
+        }
+    });
 });
 
 //create new user form route
@@ -27,9 +32,18 @@ router.post('/users', function(req, res){
     var title = req.body.title;
     var branch = req.body.branch;
     var newUser = {name: name, title: title, branch: branch};
-    users.push(newUser);
-    //redirect to users main route
-    res.redirect('./users');
+    
+    //Creating new user
+    User.create(newUser, function(err, user){
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("User added to the database!");
+            //redirect to users main route
+            res.redirect('./users');
+        }
+    });
 });
+
 
 module.exports = router;
