@@ -1,8 +1,36 @@
 <% include ../partials/header %>
 
     <div class="container">
-        <h4>This is from asset show page</h4>
-        <p><%= asset.name %></p>
+        <div class="row">
+            <div class="col-md-3">
+                
+            </div>
+
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                   <tr class="success">
+                       <td><h4>Asset Name: </h4></td>
+                       <td><%= asset.name %></td>
+                   </tr>
+                   <tr>
+                       <td><h4>Asset ID: </h4></td>
+                       <td><%= asset.asset_id %></td>
+                   </tr>
+                   <tr>
+                       <td><h4>Asset Status: </h4></td>
+                       <td><%= asset.status %></td>
+                   </tr>
+                   <tr>
+                       <td><h4>Asset Description: </h4></td>
+                       <td><%= asset.description %></td>
+                   </tr>
+                </table>
+            </div>
+
+            <div class="col-md-3">
+                
+            </div>
+        </div>
     </div>
 
 <% include ../partials/footer %>
