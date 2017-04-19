@@ -14,14 +14,14 @@
                     <th>User</th>
                     <th>Title</th>
                     <th>Branch</th>
-                    <th>EDIT</th>
+                    <th>More Details</th>
                 </thead>
                 <% users.forEach(function(user){ %>
                 <tr>
                     <td><%= user.name %></td>
                     <td><%= user.title %></td>
                     <td><%= user.branch %></td>
-                    <td><a href="#">EDIT</a></td>
+                    <td> <a href="#" class="btn btn-warning btn-xs"> Click Here</a></td>
                 </tr>
                 <% })%>
             </table>

@@ -30,8 +30,8 @@ router.post('/assets', function(req, res){
     var name = req.body.name;
     var asset_id = req.body.asset_id;
     var status = req.body.status;
-    var user = req.body.user;
-    var newAsset = {name: name, asset_id: asset_id, status: status, user: user};
+    var description = req.body.description;
+    var newAsset = {name: name, asset_id: asset_id, status: status, description: description};
     
     //Create new asset
     Assets.create(newAsset, function(err, asset){
@@ -43,6 +43,19 @@ router.post('/assets', function(req, res){
         }
     });
    
+});
+
+//show details page route
+router.get('/assets/:id', function(req, res){
+    // find the asset with provided id
+    Assets.findById(req.params.id, function(err, foundAsset){
+        if(err) {
+            console.log(err);
+        } else {
+            //render show template
+            res.render('assets/show', {asset: foundAsset});
+        }
+    });
 });
 
 module.exports = router;

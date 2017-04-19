@@ -13,16 +13,14 @@
                         <th>Asset Name</th>
                         <th>Asset ID</th>
                         <th>Status</th>
-                        <th>User Details</th>
-                        <th>EDIT</th>
+                        <th>More Details</th>
                     </thead>
                 <% assets.forEach(function(asset){ %>
                 <tr>
                     <td><%= asset.name %></td>
                     <td><%= asset.asset_id %></td>
                     <td><%= asset.status %></td>
-                    <td><%= asset.user %></td>
-                    <td> <a href="#"> EDIT</a></td>
+                    <td> <a href="/assets/<%= asset._id %>" class="btn btn-warning btn-xs"> Click Here</a></td>
                 </tr>
                 <% })%>
             </table>
