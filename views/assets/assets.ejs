@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+    <div class="container">
+        <div class="jumbotron">   
+        </div>
+        <div class="row">
+            <div class="col-md-2">  
+                <a href="./assets/new" class="btn btn-success">Add New Asset</a>
+            </div> 
+            <div class="col-md-10">
+                <table class="table table-hover">
+                    <thead class="bg-success"> 
+                        <th>Asset Name</th>
+                        <th>Asset ID</th>
+                        <th>Status</th>
+                        <th>User Details</th>
+                        <th>EDIT</th>
+                    </thead>
+                <% assets.forEach(function(asset){ %>
+                <tr>
+                    <td><%= asset.name %></td>
+                    <td><%= asset.asset_id %></td>
+                    <td><%= asset.status %></td>
+                    <td><%= asset.user %></td>
+                    <td> <a href="#"> EDIT</a></td>
+                </tr>
+                <% })%>
+            </table>
+            </div>           
+        </div>
+    </div>
+
+<% include ../partials/footer %>

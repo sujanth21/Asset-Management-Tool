@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="jumbotron">
+        
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <a href="./users/new" class="btn btn-success">Add New User</a>
+        </div>
+        <div class="col-md-10">
+            <table class="table table-hover">
+                <thead class="bg-success">
+                    <th>User</th>
+                    <th>Title</th>
+                    <th>Branch</th>
+                    <th>EDIT</th>
+                </thead>
+                <% users.forEach(function(user){ %>
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.title %></td>
+                    <td><%= user.branch %></td>
+                    <td><a href="#">EDIT</a></td>
+                </tr>
+                <% })%>
+            </table>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
